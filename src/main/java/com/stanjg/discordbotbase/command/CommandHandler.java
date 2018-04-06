@@ -1,26 +1,34 @@
 package com.stanjg.discordbotbase.command;
 
 import com.stanjg.discordbotbase.Bot;
+import com.stanjg.discordbotbase.command.commands.HelpCommand;
 import com.stanjg.discordbotbase.util.AdminCheck;
 import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommandHandler extends ListenerAdapter {
 
     private final String PREFIX = "-";
 
-    private List<Command> commands;
+    private List<Command> commands = new ArrayList<>();
     private AdminCheck adminCheck;
 
     public CommandHandler() {
 
         Bot.getShards().addEventListener(this);
         adminCheck = (guild, member) -> { return true; };
+
+        registerCommands();
+
+    }
+
+    private void registerCommands() {
+
+        commands.add(new HelpCommand(this));
 
     }
 

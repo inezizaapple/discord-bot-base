@@ -1,6 +1,5 @@
 package com.stanjg.discordbotbase;
 
-import com.stanjg.discordbotbase.command.CommandHandler;
 import com.stanjg.discordbotbase.util.BotConfig;
 
 public class Main {
